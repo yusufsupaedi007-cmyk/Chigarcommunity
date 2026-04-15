@@ -6,11 +6,11 @@ let donations = [];
 app.post('/webhook', (req, res) => {
   console.log("DATA:", req.body);
 
-  const { donator_name, amount_raw, message } = req.body;
+  const { donator_name, amount_to_display, message } = req.body;
 
   donations.unshift({
     name: donator_name || 'Anonim',
-    amount: Number(amount_raw) || 0,
+    amount: Number(amount_to_display) || 0,
     message: message || ''
   });
 
