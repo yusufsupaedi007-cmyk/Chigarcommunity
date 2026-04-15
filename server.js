@@ -4,11 +4,9 @@ app.use(require('cors')());
 app.use(express.json());
 let donations = [];
 app.post('/webhook', (req, res) => {
-const data = req.body.data || req.body;
-
-const donator_name = data.donator_name;
-const amount = Number(data.amount) || 0;
-const message = data.message;
+  const {donator_name,amount,message} = req.body;
+  donations.unshift({name:donator_name||'Anonim',
+    amount:amount||0,message:message||''});
   if(donations.length>20)donations.pop();
   res.json({ok:true});
 });
